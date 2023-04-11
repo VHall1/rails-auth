@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   attr_accessor :password_digest
 
+  has_many :groups, through: :user_groups
+  has_many :user_groups
+
   before_save :downcase_email
 
   validates :name, presence: true, length: { maximum: 50 }
