@@ -3,7 +3,11 @@ module AuthHelpers
 
   def current_user
     # TODO: Fix this!
-    @current_user ||= User.find(request.headers['Authorization'])
+    if session[:user_id]
+      @current_user ||= User.find(session[:user_id])
+    end
+
+    @current_user
   end
 
   def require_admin!
