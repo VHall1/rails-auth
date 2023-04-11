@@ -17,8 +17,4 @@ class User < ApplicationRecord
   def downcase_email
     self.email = email.downcase
   end
-
-  def check_password(password)
-    BCrypt::Password.new(self.password_digest) == password
-  end
 end
