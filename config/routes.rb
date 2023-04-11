@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :auth do
     post :login
     post :register
+    get :me
   end
 
   # Defines the root path route ("/")

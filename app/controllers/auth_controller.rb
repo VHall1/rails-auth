@@ -22,6 +22,11 @@ class AuthController < ApplicationController
     end
   end
 
+  def me
+    # Don't return password_digest
+    render json: current_user.as_json.except('password_digest')
+  end
+
   private
 
   # Only allow a list of trusted parameters through.
