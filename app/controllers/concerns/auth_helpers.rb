@@ -2,6 +2,7 @@ module AuthHelpers
   include ActiveSupport::Concern
 
   def current_user
+    # TODO: Fix this!
     @current_user ||= User.find(request.headers['Authorization'])
   end
 
