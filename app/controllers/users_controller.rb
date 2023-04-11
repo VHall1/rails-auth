@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_admin!
-  before_action :set_user, only: %i[ show update destroy ]
+  before_action :set_user, only: %i[ show update destroy assign_group ]
 
   # GET /users
   def index
@@ -37,6 +37,21 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy
+  end
+
+  def assign_group
+    @group = Group.find(params[:group_id])
+
+    if @user.groups.include?(@group)
+      render json: { error: 'User already belongs to group' }, status: :unprocessable_entity
+    else
+      @user.groups << @group
+      if @user.save
+        render json: @user
+      else
+        render json: @user.errors, status: :unprocessable_entity
+      end
+    end
   end
 
   private
