@@ -1,7 +1,6 @@
 class CreateGroups < ActiveRecord::Migration[7.0]
   def change
-    create_table :groups, id: false do |t|
-      t.string :id, default: -> { "uuid_generate_v4()" }, primary_key: true
+    create_table :groups do |t|
       t.string :name
 
       t.timestamps

@@ -10,14 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_11_104156) do
-  create_table "groups", id: :string, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2023_04_11_104332) do
+  create_table "groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", id: :string, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+  create_table "user_groups", force: :cascade do |t|
+    t.string "user_id"
+    t.string "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.string "password"
@@ -25,4 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_11_104156) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "user_groups", "groups"
+  add_foreign_key "user_groups", "users"
 end
