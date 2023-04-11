@@ -3,6 +3,7 @@ class AuthController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      session[:user_id] = @user.id
       render json: @user, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -14,6 +15,7 @@ class AuthController < ApplicationController
 
     # TODO: Return token instead of user
     if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
       render json: @user
     else
       render json: { error: 'Invalid username or password' }, status: :unauthorized
