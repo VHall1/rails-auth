@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_admin!
-  before_action :set_user, only: %i[ show update destroy assign_group ]
+  before_action :set_user, only: %i[ show update destroy assign_group groups ]
 
   # GET /users
   def index
@@ -52,6 +52,10 @@ class UsersController < ApplicationController
         render json: @user.errors, status: :unprocessable_entity
       end
     end
+  end
+
+  def groups
+    render json: @user.groups
   end
 
   private
