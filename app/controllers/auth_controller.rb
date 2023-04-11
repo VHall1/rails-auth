@@ -1,6 +1,4 @@
 class AuthController < ApplicationController
-  before_action :require_admin!
-
   def register
     @user = User.new(user_params)
 
