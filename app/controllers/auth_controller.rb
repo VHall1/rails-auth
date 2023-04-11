@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class AuthController < ApplicationController
   before_action :require_admin!
 
   def register
