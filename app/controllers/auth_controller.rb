@@ -1,9 +1,7 @@
 class AuthController < ApplicationController
   def register
     @user = User.new(user_params)
-
     if @user.save
-      session[:user_id] = @user.id
       render json: @user, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -12,19 +10,16 @@ class AuthController < ApplicationController
 
   def login
     @user = User.find_by(email: params[:email])
-
-    # TODO: Return token instead of user
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      render json: @user
+    if @user&.authenticate(params[:password])
+      token = JsonWebToken.encode(user_id: @user.id)
+      render json: { token: }
     else
       render json: { error: 'Invalid username or password' }, status: :unauthorized
     end
   end
 
   def me
-    # Don't return password_digest
-    render json: current_user.as_json.except('password_digest')
+    render json: current_user
   end
 
   private
