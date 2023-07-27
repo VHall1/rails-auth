@@ -2,9 +2,9 @@ module AuthHelpers
   include ActiveSupport::Concern
 
   def current_user
-    # TODO: Fix this!
-    if session[:user_id]
-      @current_user ||= User.find(session[:user_id])
+    if (token = request.headers['Authorization'])
+      decoded = JsonWebToken.decode(token)
+      @current_user ||= User.find_by_id(decoded[:user_id])
     end
 
     @current_user
