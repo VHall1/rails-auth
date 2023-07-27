@@ -39,25 +39,6 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
-  def assign_group
-    @group = Group.find(params[:group_id])
-
-    if @user.groups.include?(@group)
-      render json: { error: 'User already belongs to group' }, status: :unprocessable_entity
-    else
-      @user.groups << @group
-      if @user.save
-        render json: @user
-      else
-        render json: @user.errors, status: :unprocessable_entity
-      end
-    end
-  end
-
-  def groups
-    render json: @user.groups
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
