@@ -2,7 +2,7 @@ class AuthController < ApplicationController
   def register
     @user = User.new(user_params)
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user, status: :created
     else
       render json: { errors: @user.errors }, status: :unprocessable_entity
     end
