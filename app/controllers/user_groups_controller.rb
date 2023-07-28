@@ -26,7 +26,7 @@ class UserGroupsController < ApplicationController
   private
 
   def set_user_group
-    @user_group = current_user.groups.find(params[:id])
+    @user_group = current_user.user_groups.find_by!(group_id: params[:id])
   end
 
   def user_group_params
