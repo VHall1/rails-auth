@@ -13,6 +13,6 @@ module AuthHelpers
   def require_admin!
     return if current_user&.admin?
 
-    render json: { error: 'Unauthorized' }, status: :unauthorized
+    render json: { message: 'Unauthorized' }, status: :unauthorized
   end
 end

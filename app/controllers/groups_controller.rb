@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
     if @group.save
       render json: @group, status: :created, location: @group
     else
-      render json: @group.errors, status: :unprocessable_entity
+      render json: { errors: @group.errors }, status: :unprocessable_entity
     end
   end
 
@@ -30,7 +30,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       render json: @group
     else
-      render json: @group.errors, status: :unprocessable_entity
+      render json: { errors: @group.errors }, status: :unprocessable_entity
     end
   end
 

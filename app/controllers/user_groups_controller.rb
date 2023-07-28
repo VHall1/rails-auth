@@ -14,7 +14,7 @@ class UserGroupsController < ApplicationController
     if @user_group.save
       render json: @user_group, status: :created, location: current_user
     else
-      render json: @user_group.errors, status: :unprocessable_entity
+      render json: { errors: @user_group.errors }, status: :unprocessable_entity
     end
   end
 

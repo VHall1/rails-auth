@@ -4,7 +4,7 @@ class AuthController < ApplicationController
     if @user.save
       render json: @user, status: :created, location: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: { errors: @user.errors }, status: :unprocessable_entity
     end
   end
 
@@ -14,7 +14,7 @@ class AuthController < ApplicationController
       token = JsonWebToken.encode(user_id: @user.id)
       render json: { token: }
     else
-      render json: { error: 'Invalid username or password' }, status: :unauthorized
+      render json: { message: 'Invalid username or password' }, status: :unauthorized
     end
   end
 
