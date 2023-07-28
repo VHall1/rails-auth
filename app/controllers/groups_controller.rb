@@ -43,7 +43,8 @@ class GroupsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_group
-    @group = Group.find(params[:id])
+    @group = Group.find_by(id: params[:id])
+    record_not_found('group') if @group.nil?
   end
 
   # Only allow a list of trusted parameters through.

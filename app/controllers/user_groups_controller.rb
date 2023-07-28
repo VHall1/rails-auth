@@ -26,7 +26,8 @@ class UserGroupsController < ApplicationController
   private
 
   def set_user_group
-    @user_group = current_user.user_groups.find_by!(group_id: params[:id])
+    @user_group = current_user.user_groups.find_by(group_id: params[:id])
+    record_not_found('user_group') if @user_group.nil?
   end
 
   def user_group_params
