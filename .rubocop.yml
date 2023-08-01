@@ -1,0 +1,57 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+Layout:
+  Enabled: true
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+Layout/CaseIndentation:
+  EnforcedStyle: end
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+Layout/ElseAlignment:
+  Enabled: false
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+Layout/SpaceAroundOperators:
+  EnforcedStyleForExponentOperator: space
+
+Lint:
+  Enabled: true
+
+Lint/Debugger:
+  Enabled: true
+
+Metrics:
+  Enabled: false
+
+Naming:
+  Enabled: true
+Naming/MemoizedInstanceVariableName:
+  Enabled: false
+
+Rails:
+  Enabled: true
+Rails/I18nLocaleTexts:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+RSpec:
+  Enabled: true
+RSpec/MultipleExpectations:
+  Enabled: false
+
+Style:
+  Enabled: false
