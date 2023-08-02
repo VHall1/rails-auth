@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_admin!
-  before_action :set_user, only: %i[ show update destroy assign_group groups ]
+  before_action :set_user, only: %i[show update destroy]
 
   # GET /users
   def index
